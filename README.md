@@ -87,7 +87,17 @@
                     <br/>
                     <strong>Passion:</strong> Problem solver
                     <br/>
-                    <strong>Github:</strong> <a href="https://www.linkedin.com/in/iampraveenrajamani">[Click here]</a>
+                    <strong>Github:</strong> <a href="https://github.com/Praveen10">[Click here]</a>
+                </td>
+            </td>
+            <td align="center" style="vertical-align: top;">
+                <img src="https://avatars.githubusercontent.com/u/154894946?v=4" width="100px;" alt="User Avatar" />
+                <td align="left" style="vertical-align: top;">
+                    <strong>Name:</strong> Mutyala Subbarayudu
+                    <br/>
+                    <strong>Passion:</strong> Tech Embracer
+                    <br/>
+                    <strong>Github:</strong> <a href="https://github.com/muytala-subbarayudu">[Click here]</a>
                 </td>
             </td>
         </tr>
