@@ -1,0 +1,67 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'README.md'
+      - 'update_readme.py'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+
+    - name: Validate README structure
+      run: |
+        if ! grep -q "<table>" README.md; then
+          echo "ERROR: README.md is missing the <table> tag"
+          exit 1
+        fi
+        if ! grep -q "</table>" README.md; then
+          echo "ERROR: README.md is missing the </table> tag"
+          exit 1
+        fi
+        if ! grep -q "<tbody>" README.md; then
+          echo "ERROR: README.md is missing the <tbody> tag"
+          exit 1
+        fi
+        if ! grep -q "</tbody>" README.md; then
+          echo "ERROR: README.md is missing the </tbody> tag"
+          exit 1
+        fi
+        echo "README.md structure validation passed"
+
+    - name: Check Python syntax
+      run: |
+        flake8 update_readme.py --count --select=E9,F63,F7,F82 --show-source --statistics
+        python -m py_compile update_readme.py
+
+    - name: Run update_readme.py
+      run: |
+        python update_readme.py
+        if [ $? -ne 0 ]; then
+          echo "Error: update_readme.py failed to run"
+          exit 1
+        fi
+
+    - name: Check for changes in README.md
+      run: |
+        if git diff --exit-code README.md; then
+          echo "No changes detected in README.md after running update_readme.py"
+        else
+          echo "Changes detected in README.md after running update_readme.py"
+          git diff README.md
+          exit 1
+        fi

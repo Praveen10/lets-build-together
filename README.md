@@ -103,4 +103,4 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 If you have any questions, feel free to open an issue or contact [Praveen Rajamani](https://www.linkedin.com/in/iampraveenrajamani).
 
 ## 🙏 Thank You
-We greatly appreciate all contributors who help make this project better. Your support is invaluable!
+I greatly appreciate all contributors who help make this project better. Your support is invaluable!
