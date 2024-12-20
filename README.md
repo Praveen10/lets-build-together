@@ -12,7 +12,7 @@
    - Run:
      
      ```
-     git clone https://github.com/Praveen10/lets-build-together.git
+     git clone https://github.com/<YOUR NAME>/lets-build-together.git
      ```
 3. 📂 Navigate to the Repository
    - Run:
