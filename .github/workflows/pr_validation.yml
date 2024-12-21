@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'README.md'
-      - 'update_readme.py'
+      - '.github/update_readme.py'
 
 jobs:
   validate:
@@ -45,12 +45,12 @@ jobs:
 
     - name: Check Python syntax
       run: |
-        flake8 update_readme.py --count --select=E9,F63,F7,F82 --show-source --statistics
-        python -m py_compile update_readme.py
+        flake8 .github/update_readme.py --count --select=E9,F63,F7,F82 --show-source --statistics
+        python -m py_compile .github/update_readme.py
 
     - name: Run update_readme.py
       run: |
-        python update_readme.py
+        python .github/update_readme.py
         if [ $? -ne 0 ]; then
           echo "Error: update_readme.py failed to run"
           exit 1
