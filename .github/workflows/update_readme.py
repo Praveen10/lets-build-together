@@ -1,50 +1,66 @@
 import re
+import os
+from typing import List, Optional
 
-def update_readme():
-    def format_row(cells):
-        formatted_cells = '\n                '.join(cells)  
-        return f"        <tr>\n            {formatted_cells}\n        </tr>"
+def read_file(file_path: str) -> Optional[str]:
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except IOError as e:
+        print(f"Error reading file: {e}")
+        return None
 
-    with open('../../README.md', 'r', encoding='utf-8') as file:
-        content = file.read()
+def write_file(file_path: str, content: str) -> bool:
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(content)
+        return True
+    except IOError as e:
+        print(f"Error writing file: {e}")
+        return False
 
-    # Find the table in the README
+def format_row(cells: List[str]) -> str:
+    formatted_cells = '\n            '.join(cells)
+    return f"        <tr>\n            {formatted_cells}\n        </tr>"
+
+def extract_table_cells(table: str) -> List[str]:
+    td_pattern = r'<td[^>]*>(?:(?!</?td>).)*</td>'
+    return re.findall(td_pattern, table, re.DOTALL)
+
+def create_updated_table(rows: List[str]) -> str:
+    return (
+        "<table>\n"
+        "    <tbody>\n"
+        f"{os.linesep.join(rows)}\n"
+        "    </tbody>\n"
+        "</table>"
+    )
+
+def update_readme(file_path: str) -> None:
+    content = read_file(file_path)
+    if content is None:
+        return
+
     table_pattern = r'<table>.*?</table>'
     table_match = re.search(table_pattern, content, re.DOTALL)
     
-    if table_match:
-        table = table_match.group(0)
-        
-        # Count the number of contributor entries
-        td_pattern = r'<td[^>]*>(?:(?!</?td>).)*<td[^>]*>.*?</td>.*?</td>'
-        # td_pattern = r'<td.*?>.*?</td>'
-        table_cells = re.findall(td_pattern, table, re.DOTALL)
-        
-        # Create rows with exactly 3 cells each
-        rows = []
-        for i in range(0, len(table_cells), 3):
-            row_cells = table_cells[i:i + 3]
-            # row = '<tr>' + ''.join(row_cells) + '</tr>'
-            rows.append(format_row(row_cells))
+    if not table_match:
+        print("Table not found in README.md")
+        return
 
-        # Join rows and wrap with table and tbody tags
-        updated_table = (
-            "<table>\n"
-            "    <tbody>\n"
-            f"{'\n'.join(rows)}\n"
-            "    </tbody>\n"
-            "</table>"
-        )
-        
-        # Replace the old table with the updated one
-        updated_content = content.replace(table_match.group(0), updated_table)
-        
-        with open('../../README.md', 'w', encoding='utf-8') as file:
-            file.write(updated_content)
-        
+    table = table_match.group(0)
+    table_cells = extract_table_cells(table)
+    
+    rows = [format_row(table_cells[i:i+3]) for i in range(0, len(table_cells), 3)]
+    updated_table = create_updated_table(rows)
+    
+    updated_content = content.replace(table_match.group(0), updated_table)
+    
+    if write_file(file_path, updated_content):
         print(f"README.md updated successfully. Total rows: {len(rows)}")
     else:
-        print("Table not found in README.md")
+        print("Failed to update README.md")
 
 if __name__ == "__main__":
-    update_readme()
+    readme_path = os.path.join(os.path.dirname(__file__), '..', '..', 'README.md')
+    update_readme(readme_path)
