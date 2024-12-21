@@ -89,7 +89,6 @@
                     <br/>
                     <strong>Github:</strong> <a href="https://github.com/Praveen10">[Click here]</a>
                 </td>
-            </td>
             <td align="center" style="vertical-align: top;">
                 <img src="https://avatars.githubusercontent.com/u/154894946?v=4" width="100px;" alt="User Avatar" />
                 <td align="left" style="vertical-align: top;">
@@ -99,6 +98,14 @@
                     <br/>
                     <strong>Github:</strong> <a href="https://github.com/muytala-subbarayudu">[Click here]</a>
                 </td>
+            <td align="center" style="vertical-align: top;">
+            <img src="https://avatars.githubusercontent.com/u/128381891?s=400&u=d33c6e9feca72e54998d14ef062eff22047d0c34&v=4" width="100px;" alt="User Avatar" />
+            <td align="left" style="vertical-align: top;">
+                <strong>Name: REEHAN SHAVEEZ</strong> <name>
+                <br/>
+                <strong>Passion:</strong> Programming
+                <br/>
+                <strong>Github:</strong> <a href="https://github.com/Reehansz">[Click here]</a>
             </td>
         </tr>
     </tbody>
