@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'README.md'
-      - '.github/update_readme.py'
+      - '.github/workflows/update_readme.py'
 
 jobs:
   validate:
