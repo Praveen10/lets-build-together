@@ -24,14 +24,14 @@ def format_row(cells: List[str]) -> str:
     return f"        <tr>\n            {formatted_cells}\n        </tr>"
 
 def extract_table_cells(table: str) -> List[str]:
-    td_pattern = r'<td[^>]*>(?:(?!</?td>).)*</td>'
+    td_pattern = r'<td[^>]*>(?:(?!</?td>).)*</td>.*?</td>'
     return re.findall(td_pattern, table, re.DOTALL)
 
 def create_updated_table(rows: List[str]) -> str:
     return (
         "<table>\n"
         "    <tbody>\n"
-        f"{os.linesep.join(rows)}\n"
+        f"{'\n'.join(rows)}\n"
         "    </tbody>\n"
         "</table>"
     )

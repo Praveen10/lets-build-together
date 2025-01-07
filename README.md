@@ -111,6 +111,8 @@
                     <strong>Github:</strong> <a href="https://github.com/Reehansz">[Click here]</a>
                 </td>
             </td>
+        </tr>
+        <tr>
             <td align="center" style="vertical-align: top;">
                 <img src="https://avatars.githubusercontent.com/u/121846919?v=4" width="100px;" alt="User Avatar" />
                 <td align="left" style="vertical-align: top;">
