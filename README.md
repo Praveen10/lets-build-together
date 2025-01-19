@@ -123,6 +123,16 @@
                     <strong>Github:</strong> <a href="https://github.com/ElangovanVS">[Click here]</a>
                 </td>
             </td>
+            <td align="center" style="vertical-align: top;">
+                <img src="https://avatars.githubusercontent.com/u/186774357?v=4" width="100px;" alt="User Avatar" />
+                <td align="left" style="vertical-align: top;">
+                    <strong>Name: </strong>Sanjay Selvaraj
+                    <br/>
+                    <strong>Passion:</strong> VR Development
+                    <br/>
+                    <strong>Github:</strong> <a href="https://github.com/Sanjaysrepo">[Click here]</a>
+                </td>
+            </td>
         </tr>
     </tbody>
 </table>
